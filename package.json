@@ -1,0 +1,19 @@
+{
+  "name": "hexagonal-module",
+  "version": "1.0.0",
+  "description": "CLI para generar módulos Java con arquitectura hexagonal",
+  "bin": {
+    "create-module": "./index.js"
+  },
+  "type": "module",
+  "keywords": ["java", "hexagonal", "cli", "generator", "spring"],
+  "author": "Angel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu-usuario/create-hexagonal-module"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^8.0.1"
+  }
+}
