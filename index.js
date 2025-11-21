@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import { main } from "./logic/cli/commands.js";
+import { main } from "./src/cli/commands.js";
 
 main();

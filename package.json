@@ -1,6 +1,6 @@
 {
   "name": "@angexxl/hexamod",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI para generar módulos Java con arquitectura hexagonal",
   "bin": {
     "angexxl/hexamod": "./index.js"

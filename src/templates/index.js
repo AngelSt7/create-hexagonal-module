@@ -11,3 +11,4 @@ export { projectionTemplate } from "./ProjectionTemplate.js"
 export { controllerTemplate } from "./ControllerTemplate.js";
 export { jpaRepositoryTemplate } from "./JpaRepositoryTemplate.js"
 export { repositoryImplTemplate } from "./RepositoryImplTemplate.js"
+export { responseDtoTemplate } from "./ResponseDtoTemplate.js"

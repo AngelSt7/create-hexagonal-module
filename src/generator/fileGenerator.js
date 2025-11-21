@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs";
 import { createFolderStructure } from "./folderGenerator.js";
 import { capitalize, getBasePackage, success, headline } from "../helpers/index.js";
-import { modelTemplate, dtoTemplate, entityTemplate, repositoryPortTemplate, domainServiceTemplate, inputMapperTemplate, outputMapperTemplate, useCaseTemplate, entityMapperTemplate, controllerTemplate, jpaRepositoryTemplate, repositoryImplTemplate, projectionTemplate } from "../templates/index.js";
+import { modelTemplate, dtoTemplate, entityTemplate, repositoryPortTemplate, domainServiceTemplate, inputMapperTemplate, outputMapperTemplate, useCaseTemplate, entityMapperTemplate, controllerTemplate, jpaRepositoryTemplate, repositoryImplTemplate, projectionTemplate, responseDtoTemplate } from "../templates/index.js";
 
 function createModel(moduleRoot, moduleName, basePath) {
   const modelName = `${capitalize(moduleName)}Model.java`;
@@ -139,6 +139,17 @@ function createRepositoryImpl(moduleRoot, moduleName, basePackage) {
   success(`Archivo creado: infrastructure/persistence/repositories/implementation/${implName}`);
 }
 
+function createResponseDto(moduleRoot, moduleName, basePackage) {
+  const dtoFolder = path.join(moduleRoot, "application/dto/output");
+  const dtoName = `${capitalize(moduleName)}ResponseDto.java`;
+  
+  const dtoContent = responseDtoTemplate(basePackage, moduleName);
+  
+  fs.writeFileSync(path.join(dtoFolder, dtoName), dtoContent);
+  success(`Archivo creado: application/dto/output/${dtoName}`);
+}
+
+
 export async function generateModule(basePath, moduleName) {
   const moduleRoot = path.join(basePath, moduleName);
   const basePackage = getBasePackage(basePath);
@@ -158,6 +169,7 @@ export async function generateModule(basePath, moduleName) {
   createController(moduleRoot, moduleName, basePackage);
   createJpaRepository(moduleRoot, moduleName, basePackage);
   createRepositoryImpl(moduleRoot, moduleName, basePackage);
+  createResponseDto(moduleRoot, moduleName, basePackage);
   
   headline(`
 --------------------------------------
