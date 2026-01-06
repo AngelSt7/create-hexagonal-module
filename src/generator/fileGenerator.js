@@ -172,7 +172,7 @@ function createFactories(moduleRoot, moduleName, basePackage) {
 
 function createRules(basePackage, moduleName) {
   const rulesFolder = path.join(moduleRoot, "domain/rules");
-  const rulesName = `${capitalize(moduleName)}CompletationRules.java`;
+  const rulesName = `${capitalize(moduleName)}CompletionRules.java`;
   
   const rulesContent = rulesTemplate(basePackage, moduleName);
   

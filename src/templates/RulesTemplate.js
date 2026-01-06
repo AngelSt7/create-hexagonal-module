@@ -8,7 +8,7 @@ package ${basePackage}.${moduleName}.domain.rules;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ${cap}CompletationRules {
+public class ${cap}CompletionRules {
 
     // TODO: When you need to apply changes to the domain service and maintain immutability, we apply toBuilder
 

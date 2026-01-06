@@ -1,16 +1,24 @@
 {
   "name": "@angexxl/hexamod",
   "version": "1.0.3",
-  "description": "CLI para generar módulos Java con arquitectura hexagonal",
+  "description": "CLI to generate Java Hexagonal Architecture modules for Spring Boot in seconds.",
   "bin": {
-    "angexxl/hexamod": "./index.js"
+    "hexamod": "./index.js"
   },
   "type": "module",
   "files": [
     "index.js",
     "src/**/*"
   ],
-  "keywords": ["java", "hexagonal", "cli", "generator", "spring"],
+  "keywords": [
+    "java",
+    "hexagonal",
+    "architecture",
+    "cli",
+    "generator",
+    "spring-boot",
+    "ddd"
+  ],
   "author": "Angel",
   "license": "MIT",
   "repository": {

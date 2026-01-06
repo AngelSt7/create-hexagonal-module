@@ -1,49 +1,49 @@
 # @angexxl/hexamod
 
-CLI para generar módulos Java con arquitectura hexagonal en segundos.
+A powerful CLI to generate **Java Hexagonal Architecture** modules for **Spring Boot** projects in seconds.
 
-## Instalación
+Designed to follow Domain-Driven Design (DDD) best practices, including separation of concerns, domain rules, factories, and immutable models.
+
+## Installation
+
+Run directly with `npx`:
 
 ```bash
 npx @angexxl/hexamod
 ```
 
-O instalar globalmente:
+Or install globally:
 
 ```bash
 npm install -g @angexxl/hexamod
+```
+
+## Usage
+
+Navigate to your project folder and run:
+
+```bash
 hexamod
 ```
 
-## Uso
+The CLI will ask for:
 
-```bash
-npx @angexxl/hexamod
-```
+1. **Base Path** - e.g., `src/main/java/com/company/project` (It saves this path for future use).
+2. **Module Name** - e.g., `user`, `order`, `payment`.
 
-El CLI te preguntará:
-1. **Ruta base** - Ej: `src/main/java/com/tu/proyecto`
-2. **Nombre del módulo** - Ej: `user`, `post`, `product`
+## Generated Structure
 
-## Estructura generada
+The tool creates a full "Vertical Slice" module following strict Hexagonal Architecture layers:
 
-```
+```text
 moduleName/
-├── domain/
-│   ├── model/
-│   │   └── ModuleModel.java
-│   ├── services/
-│   │   └── ModuleDomainService.java
-│   └── ports/
-│       └── repository/
-│           └── ModuleRepositoryPort.java
 ├── application/
 │   ├── dto/
 │   │   ├── input/
-│   │   │   ├── CreateModuleDTO.java
-│   │   │   └── UpdateModuleDTO.java
+│   │   │   ├── CreateModuleDto.java
+│   │   │   └── UpdateModuleDto.java
 │   │   └── output/
-│   │   │   ├── ModuleResponseDTO.java
+│   │       └── ModuleResponseDto.java
 │   ├── mappers/
 │   │   ├── input/
 │   │   │   └── ModuleInputMapper.java
@@ -51,31 +51,53 @@ moduleName/
 │   │       └── ModuleOutputMapper.java
 │   └── useCases/
 │       └── CreateModuleUseCase.java
+├── domain/
+│   ├── enums/
+│   │   └── ModuleEnum.java
+│   ├── factories/
+│   │   └── ModuleFactory.java      <-- For complex object creation
+│   ├── model/
+│   │   └── ModuleModel.java        <-- Immutable Domain Model (@Builder toBuilder=true)
+│   ├── ports/
+│   │   ├── repository/
+│   │   │   └── ModuleRepositoryPort.java
+│   │   └── service/
+│   ├── rules/
+│   │   └── ModuleCompletionRules.java <-- Encapsulated Business Rules
+│   └── services/
+│       └── ModuleDomainService.java
 └── infrastructure/
     ├── persistence/
     │   ├── entities/
     │   │   └── ModuleEntity.java
-    │   ├── repositories/
-    │   │   ├── jpa/
-    │   │   │   └── JpaModuleRepository.java
-    │   │   └── implementation/
-    │   │       └── ModuleRepositoryImpl.java
     │   ├── mappers/
     │   │   └── ModuleEntityMapper.java
-    │   └── projections/
-    │       └── ModuleProjection.java
+    │   ├── projections/
+    │   │   └── ModuleProjection.java
+    │   └── repositories/
+    │       ├── implementation/
+    │       │   └── ModuleRepositoryImpl.java
+    │       └── jpa/
+    │           └── JpaModuleRepository.java
     └── web/
         └── controllers/
             └── ModuleController.java
 ```
 
-## Comandos
+## Key Features
 
-| Comando | Descripción |
+- **DDD Ready:** Includes folders for `Factories`, `Rules`, and `Domain Services` out of the box.
+- **Immutable Models:** Generates Domain Models using Lombok's `@Builder(toBuilder = true)`.
+- **Persistence Separation:** Clean separation between `JpaRepository`, `RepositoryPort`, and `RepositoryImplementation`.
+- **Smart Configuration:** Remembers your `src/main/java/...` path so you don't have to type it every time.
+
+## Commands
+
+| Command | Description |
 |---------|-------------|
-| `npx @angexxl/hexamod` | Ejecutar el CLI |
-| `npx @angexxl/hexamod --reset-path` | Borrar ruta guardada |
+| `npx @angexxl/hexamod` | Run the generator |
+| `npx @angexxl/hexamod --reset-path` | Clear the saved base path configuration |
 
-## Licencia
+## License
 
 MIT
