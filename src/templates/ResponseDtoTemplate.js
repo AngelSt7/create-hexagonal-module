@@ -8,7 +8,7 @@ export function responseDtoTemplate(basePackage, moduleName) {
 
 public record ${cap}ResponseDto(
     String message
-    // TODO: Agrega tu DTO de data aquí
+    // TODO: Add response fields here
 ) {
 
 }

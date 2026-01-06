@@ -5,42 +5,42 @@ import { saveConfig } from "../config/configManager.js";
 
 export async function askForBasePath() {
   const inputPath = await input({
-    message: "Ingresa la ruta base (p.ej. src/main/java/com/angel/pruebas):"
+    message: "Enter the base path (e.g. src/main/java/com/example/modules):"
   });
 
   let p = inputPath.replace(/\\/g, "/");
 
   if (!fs.existsSync(p)) {
-    info("La ruta no existe. Creando carpetas...");
+    info("Path does not exist. Creating folders...");
     fs.mkdirSync(p, { recursive: true });
-    success("Ruta creada correctamente.");
+    success("Path created successfully.");
   }
 
   if (!p.includes("src/main/java")) {
-    error("La ruta DEBE estar dentro de src/main/java");
+    error("The path MUST be inside src/main/java");
     process.exit(1);
   }
 
   saveConfig({ javaBase: p });
-  success(`Ruta base guardada: ${p}`);
+  success(`Base path saved: ${p}`);
   return p;
 }
 
 export async function askForModuleName() {
   const name = await input({
-    message: "¿Nombre del módulo a crear?"
+    message: "Module name to create?"
   });
   return name;
 }
 
 export async function askToUseExistingPath(currentPath) {
-  console.log(`\nRuta guardada: ${currentPath}\n`);
+  console.log(`\nSaved path: ${currentPath}\n`);
 
   const use = await select({
-    message: "¿Qué deseas hacer?",
+    message: "What do you want to do?",
     choices: [
-      { name: "→ Usar esta ruta", value: true },
-      { name: "→ Ingresar nueva ruta", value: false }
+      { name: "→ Use this path", value: true },
+      { name: "→ Enter new path", value: false }
     ]
   });
 

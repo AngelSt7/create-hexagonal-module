@@ -5,7 +5,7 @@ import { colors } from "../constants/colors.js";
 import { success, step, sleep } from "../helpers/index.js";
 
 export async function createFolderStructure(moduleRoot) {
-  step("Creando estructura de carpetas...");
+  step("Creating folder structure...");
 
   for (const folder of MODULE_FOLDERS) {
     const fullPath = path.join(moduleRoot, folder);
@@ -16,7 +16,7 @@ export async function createFolderStructure(moduleRoot) {
     process.stdout.clearLine?.();
     process.stdout.cursorTo?.(0);
 
-    success(`Carpeta creada: ${folder}`);
+    success(`Folder created: ${folder}`);
     await sleep(20);
   }
 }

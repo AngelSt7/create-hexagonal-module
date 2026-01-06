@@ -2,7 +2,7 @@ import { capitalize } from "../helpers/index.js";
 
 export function controllerTemplate(basePackage, moduleName) {
   const cap = capitalize(moduleName);
-  const packagePath = `${basePackage}.${moduleName}.infrastructure.controllers`;
+  const packagePath = `${basePackage}.${moduleName}.infrastructure.controllers.web`;
   const useCaseImport = `${basePackage}.${moduleName}.application.useCases.Create${cap}UseCase`;
 
   return `package ${packagePath};
@@ -15,7 +15,7 @@ import ${useCaseImport};
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("") // TODO: Tu ruta base aquí
+@RequestMapping("${moduleName}") // TODO: Define your endpoint
 @RequiredArgsConstructor
 public class ${cap}Controller {
 

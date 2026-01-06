@@ -6,7 +6,7 @@ export function buildJavaPackage(basePath, moduleName, subPath = "domain/model")
   const idx = normalized.indexOf("src/main/java/");
   
   if (idx === -1) {
-    throw new Error("La ruta base debe contener src/main/java/");
+    throw new Error("The base path must contain src/main/java/");
   }
   
   let pkg = normalized.substring(idx + "src/main/java/".length);
@@ -33,5 +33,5 @@ export function findJavaBasePath(startPath) {
     current = path.dirname(current);
   }
   
-  throw new Error("No se encontró 'src/main/java' en ningún nivel superior.");
+  throw new Error("No 'src/main/java' found in any parent directory.");
 }

@@ -1,20 +1,28 @@
 export const MODULE_FOLDERS = [
-  "domain/model",
-  "domain/services",
-  "domain/ports/repository",
-  "domain/ports/service",
-  "infrastructure/persistence/entities",
-  "infrastructure/persistence/repositories",
-  "infrastructure/persistence/repositories/implementation",
-  "infrastructure/persistence/repositories/jpa",
-  "infrastructure/persistence/mappers",
-  "infrastructure/persistence/projections",
-  "infrastructure/web/controllers",
-  "infrastructure/web/services",
-  "infrastructure/web/decorators",
   "application/dto/input",
   "application/dto/output",
   "application/mappers/input",
   "application/mappers/output",
-  "application/useCases"
+  "application/useCases",
+  
+  "domain/model",
+  "domain/ports/repository",
+  "domain/ports/service",
+
+  "domain/enums",
+  "domain/factories",
+  "domain/rules",
+  
+  "domain/services",
+ 
+  "infrastructure/notifications",
+  "infrastructure/persistence/entities",
+  "infrastructure/persistence/mappers",
+  "infrastructure/persistence/projections",
+  "infrastructure/persistence/repositories",
+  "infrastructure/persistence/repositories/implementation",
+  "infrastructure/persistence/repositories/jpa",
+  "infrastructure/web/controllers",
+  "infrastructure/web/decorators",
+  "infrastructure/web/services"
 ];

@@ -2,30 +2,29 @@ import path from "path";
 import fs from "fs";
 import { createFolderStructure } from "./folderGenerator.js";
 import { capitalize, getBasePackage, success, headline } from "../helpers/index.js";
-import { modelTemplate, dtoTemplate, entityTemplate, repositoryPortTemplate, domainServiceTemplate, inputMapperTemplate, outputMapperTemplate, useCaseTemplate, entityMapperTemplate, controllerTemplate, jpaRepositoryTemplate, repositoryImplTemplate, projectionTemplate, responseDtoTemplate } from "../templates/index.js";
+import { modelTemplate, dtoTemplate, entityTemplate, repositoryPortTemplate, domainServiceTemplate, inputMapperTemplate, outputMapperTemplate, useCaseTemplate, entityMapperTemplate, controllerTemplate, jpaRepositoryTemplate, repositoryImplTemplate, projectionTemplate, responseDtoTemplate, enumTemplate, factoryTemplate, rulesTemplate } from "../templates/index.js";
 
 function createModel(moduleRoot, moduleName, basePath) {
   const modelName = `${capitalize(moduleName)}Model.java`;
   const modelPath = path.join(moduleRoot, "domain/model", modelName);
   
   fs.writeFileSync(modelPath, modelTemplate(moduleName, basePath));
-  success(`Archivo creado: domain/model/${modelName}`);
+  success(`File created: domain/model/${modelName}`);
 }
 
 function createDTOs(moduleRoot, moduleName, basePackage) {
   const dtoFolder = path.join(moduleRoot, "application/dto/input");
   
-  const createDtoName = `Create${capitalize(moduleName)}DTO.java`;
-  const updateDtoName = `Update${capitalize(moduleName)}DTO.java`;
+  const createDtoName = `Create${capitalize(moduleName)}Dto.java`;
+  const updateDtoName = `Update${capitalize(moduleName)}Dto.java`;
 
-  const createDtoContent = dtoTemplate(`Create${capitalize(moduleName)}DTO`, basePackage, moduleName);
-  const updateDtoContent = dtoTemplate(`Update${capitalize(moduleName)}DTO`, basePackage, moduleName);
-
+  const createDtoContent = dtoTemplate(`Create${capitalize(moduleName)}Dto`, basePackage, moduleName);
+  const updateDtoContent = dtoTemplate(`Update${capitalize(moduleName)}Dto`, basePackage, moduleName);
   fs.writeFileSync(path.join(dtoFolder, createDtoName), createDtoContent);
   fs.writeFileSync(path.join(dtoFolder, updateDtoName), updateDtoContent);
 
-  success(`Archivo creado: application/dto/input/${createDtoName}`);
-  success(`Archivo creado: application/dto/input/${updateDtoName}`);
+  success(`File created: application/dto/input/${createDtoName}`);
+  success(`File created: application/dto/input/${updateDtoName}`);
 }
 
 function createEntity(moduleRoot, moduleName, basePackage) {
@@ -35,7 +34,7 @@ function createEntity(moduleRoot, moduleName, basePackage) {
   const entityContent = entityTemplate(`${capitalize(moduleName)}Entity`, basePackage, moduleName);
   
   fs.writeFileSync(path.join(entitiesFolder, entityName), entityContent);
-  success(`Archivo creado: infrastructure/persistence/entities/${entityName}`);
+  success(`File created: infrastructure/persistence/entities/${entityName}`);
 }
 
 function createUseCase(moduleRoot, moduleName, basePackage) {
@@ -45,7 +44,7 @@ function createUseCase(moduleRoot, moduleName, basePackage) {
   const useCaseContent = useCaseTemplate(basePackage, moduleName);
   
   fs.writeFileSync(path.join(useCaseFolder, useCaseName), useCaseContent);
-  success(`Archivo creado: application/useCases/${useCaseName}`);
+  success(`File created: application/useCases/${useCaseName}`);
 }
 
 function createInputMapper(moduleRoot, moduleName, basePackage) {
@@ -55,7 +54,7 @@ function createInputMapper(moduleRoot, moduleName, basePackage) {
   const mapperContent = inputMapperTemplate(basePackage, moduleName);
   
   fs.writeFileSync(path.join(mapperFolder, mapperName), mapperContent);
-  success(`Archivo creado: application/mappers/input/${mapperName}`);
+  success(`File created: application/mappers/input/${mapperName}`);
 }
 
 function createDomainService(moduleRoot, moduleName, basePackage) {
@@ -65,7 +64,7 @@ function createDomainService(moduleRoot, moduleName, basePackage) {
   const serviceContent = domainServiceTemplate(basePackage, moduleName);
   
   fs.writeFileSync(path.join(servicesFolder, serviceName), serviceContent);
-  success(`Archivo creado: domain/services/${serviceName}`);
+  success(`File created: domain/services/${serviceName}`);
 }
 
 function createRepositoryPort(moduleRoot, moduleName, basePackage) {
@@ -75,7 +74,7 @@ function createRepositoryPort(moduleRoot, moduleName, basePackage) {
   const repositoryContent = repositoryPortTemplate(basePackage, moduleName);
   
   fs.writeFileSync(path.join(repositoryFolder, repositoryName), repositoryContent);
-  success(`Archivo creado: domain/ports/repository/${repositoryName}`);
+  success(`File created: domain/ports/repository/${repositoryName}`);
 }
 
 function createOutputMapper(moduleRoot, moduleName, basePackage) {
@@ -85,7 +84,7 @@ function createOutputMapper(moduleRoot, moduleName, basePackage) {
   const mapperContent = outputMapperTemplate(basePackage, moduleName);
   
   fs.writeFileSync(path.join(mapperFolder, mapperName), mapperContent);
-  success(`Archivo creado: application/mappers/output/${mapperName}`);
+  success(`File created: application/mappers/output/${mapperName}`);
 }
 
 function createEntityMapper(moduleRoot, moduleName, basePackage) {
@@ -95,7 +94,7 @@ function createEntityMapper(moduleRoot, moduleName, basePackage) {
   const mapperContent = entityMapperTemplate(basePackage, moduleName);
   
   fs.writeFileSync(path.join(mapperFolder, mapperName), mapperContent);
-  success(`Archivo creado: infrastructure/persistence/mappers/${mapperName}`);
+  success(`File created: infrastructure/persistence/mappers/${mapperName}`);
 }
 
 function createProjection(moduleRoot, moduleName, basePackage) {
@@ -105,7 +104,7 @@ function createProjection(moduleRoot, moduleName, basePackage) {
   const projectionContent = projectionTemplate(basePackage, moduleName);
   
   fs.writeFileSync(path.join(projectionFolder, projectionName), projectionContent);
-  success(`Archivo creado: infrastructure/persistence/projections/${projectionName}`);
+  success(`File created: infrastructure/persistence/projections/${projectionName}`);
 }
 
 
@@ -116,7 +115,7 @@ function createController(moduleRoot, moduleName, basePackage) {
   const controllerContent = controllerTemplate(basePackage, moduleName);
   
   fs.writeFileSync(path.join(controllerFolder, controllerName), controllerContent);
-  success(`Archivo creado: infrastructure/controllers/${controllerName}`);
+  success(`File created: infrastructure/controllers/${controllerName}`);
 }
 
 function createJpaRepository(moduleRoot, moduleName, basePackage) {
@@ -126,7 +125,7 @@ function createJpaRepository(moduleRoot, moduleName, basePackage) {
   const jpaContent = jpaRepositoryTemplate(basePackage, moduleName);
   
   fs.writeFileSync(path.join(jpaFolder, jpaName), jpaContent);
-  success(`Archivo creado: infrastructure/persistence/repositories/jpa/${jpaName}`);
+  success(`File created: infrastructure/persistence/repositories/jpa/${jpaName}`);
 }
 
 function createRepositoryImpl(moduleRoot, moduleName, basePackage) {
@@ -136,7 +135,7 @@ function createRepositoryImpl(moduleRoot, moduleName, basePackage) {
   const implContent = repositoryImplTemplate(basePackage, moduleName);
   
   fs.writeFileSync(path.join(implFolder, implName), implContent);
-  success(`Archivo creado: infrastructure/persistence/repositories/implementation/${implName}`);
+  success(`File created: infrastructure/persistence/repositories/implementation/${implName}`);
 }
 
 function createResponseDto(moduleRoot, moduleName, basePackage) {
@@ -146,7 +145,39 @@ function createResponseDto(moduleRoot, moduleName, basePackage) {
   const dtoContent = responseDtoTemplate(basePackage, moduleName);
   
   fs.writeFileSync(path.join(dtoFolder, dtoName), dtoContent);
-  success(`Archivo creado: application/dto/output/${dtoName}`);
+  success(`File created: application/dto/output/${dtoName}`);
+}
+
+function createEnums(moduleRoot, moduleName, basePackage){
+  const enumFolder = path.join(moduleRoot, "domain/enums");
+  const enumName = `${capitalize(moduleName)}Enum.java`;
+  
+  const enumContent = enumTemplate(basePackage, moduleName);
+  
+  fs.writeFileSync(path.join(enumFolder, enumName), enumContent);
+  success(`File created: domain/enums/${enumName}`);
+}
+
+function createFactories(moduleRoot, moduleName, basePackage) {
+
+  const factoryFolder = path.join(moduleRoot, "domain/factories");
+  const factoryName = `${capitalize(moduleName)}Factory.java`;
+  
+  const factoryContent = factoryTemplate(basePackage, moduleName);
+  
+  fs.writeFileSync(path.join(factoryFolder, factoryName), factoryContent);
+  success(`File created: domain/factories/${factoryName}`);
+
+}
+
+function createRules(basePackage, moduleName) {
+  const rulesFolder = path.join(moduleRoot, "domain/rules");
+  const rulesName = `${capitalize(moduleName)}CompletationRules.java`;
+  
+  const rulesContent = rulesTemplate(basePackage, moduleName);
+  
+  fs.writeFileSync(path.join(rulesFolder, rulesName), rulesContent);
+  success(`File created: domain/rules/${rulesName}`);
 }
 
 
@@ -170,10 +201,14 @@ export async function generateModule(basePath, moduleName) {
   createJpaRepository(moduleRoot, moduleName, basePackage);
   createRepositoryImpl(moduleRoot, moduleName, basePackage);
   createResponseDto(moduleRoot, moduleName, basePackage);
-  
+  createEnums(moduleRoot, moduleName, basePackage);
+  createFactories(moduleRoot, moduleName, basePackage);
+  createRules(moduleRoot, moduleName, basePackage);
+
+
   headline(`
 --------------------------------------
-      MÓDULO '${moduleName}' LISTO
+      MODULE '${moduleName}' READY
 --------------------------------------
 `);
 }

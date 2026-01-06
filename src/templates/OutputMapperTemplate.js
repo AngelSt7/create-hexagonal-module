@@ -6,9 +6,17 @@ export function outputMapperTemplate(basePackage, moduleName) {
 
   return `package ${packagePath};
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ${cap}OutputMapper {
 
-    // TODO: De Model a DTOs de respuesta
+    // TODO: To model to dto mapping methods, implement in UseCases
+
+    // EXAMPLE:
+    // public AuthResponseDto withMessage(String message, UserModel userModel) {
+    //     return new AuthResponseDto(message, toAuthInfoDto(userModel));
+    // }
 
 }
 `;

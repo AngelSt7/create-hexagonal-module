@@ -23,7 +23,7 @@ public class ${cap}RepositoryImpl implements ${cap}RepositoryPort {
     private final Jpa${cap}Repository jpa${cap}Repository;
 
     @Override
-    // TODO: Implementar métodos del port
+    // TODO: Implement repository methods
 
 }
 `;

@@ -43,6 +43,7 @@ moduleName/
 │   │   │   ├── CreateModuleDTO.java
 │   │   │   └── UpdateModuleDTO.java
 │   │   └── output/
+│   │   │   ├── ModuleResponseDTO.java
 │   ├── mappers/
 │   │   ├── input/
 │   │   │   └── ModuleInputMapper.java

@@ -1,3 +1,6 @@
+export { rulesTemplate } from "./RulesTemplate.js";
+export { enumTemplate } from "./EnumTemplate.js";
+export { factoryTemplate } from "./FactoryTemplate.js";
 export { dtoTemplate } from "./DtoTemplate.js"
 export { entityTemplate } from "./EntityTemplate.js";
 export { modelTemplate } from "./ModelTemplate.js";

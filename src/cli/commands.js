@@ -8,7 +8,7 @@ function handleResetPath() {
   
   if (args.includes("--reset-path")) {
     resetConfig();
-    success("Ruta guardada eliminada. Puedes configurar una nueva.");
+    success("Saved path deleted. You can configure a new one.");
     process.exit(0);
   }
 }
@@ -28,15 +28,15 @@ export async function main() {
 
   headline(`
 ======================================
-   CREAR MÓDULO JAVA HEXAGONAL
+   CREATE JAVA HEXAGONAL MODULE
 ======================================
 `);
 
   const basePath = await getBasePath();
   const moduleName = await askForModuleName();
 
-  info(`Ruta final: ${basePath}`);
-  info(`Módulo: ${moduleName}`);
+  info(`Final path: ${basePath}`);
+  info(`Module: ${moduleName}`);
 
   await generateModule(basePath, moduleName);
 }

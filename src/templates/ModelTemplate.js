@@ -9,13 +9,11 @@ export function modelTemplate(moduleName, basePath) {
   return `
 package ${packagePath};
 
-import java.util.UUID;
-
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
+@Builder(toBuilder = true)
 public class ${className} {
 
 }
